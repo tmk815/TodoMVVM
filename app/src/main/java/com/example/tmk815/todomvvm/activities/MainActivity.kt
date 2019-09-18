@@ -38,7 +38,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
         todoViewModel.findAll().observe(this,
-            Observer<List<Todo>> { t -> adapter.setTodos(t!!) })
+            Observer<List<Todo>> {
+                if (it != null) {
+                    adapter.setTodos(it)
+                }
+            })
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
