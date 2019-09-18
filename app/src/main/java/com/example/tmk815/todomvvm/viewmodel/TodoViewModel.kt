@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import com.example.tmk815.todomvvm.TodoRepository
 import com.example.tmk815.todomvvm.db.entity.Todo
 
-class TodoViewModel (application: Application): AndroidViewModel(application){
+class TodoViewModel(application: Application) : AndroidViewModel(application) {
     private var repository: TodoRepository =
         TodoRepository(application)
     private var allTodos: LiveData<List<Todo>> = repository.findAll()
