@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        buttonAddTodo.setOnClickListener {
+
+        val recyclerView = recycler_view
+
+        button_add_todo.setOnClickListener {
             startActivityForResult(
                 Intent(this, AddTodoActivity::class.java),
                 ADD_TODO_REQUEST
