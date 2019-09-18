@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tmk815.todomvvm.R
 import com.example.tmk815.todomvvm.adapter.TodoAdapter
 import com.example.tmk815.todomvvm.db.entity.Todo
@@ -67,11 +66,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) return
 
         if (requestCode == ADD_TODO_REQUEST && resultCode == Activity.RESULT_OK) {
             val newTodo = Todo(
                 0,
-                data!!.getStringExtra(AddTodoActivity.TODO)
+                data.getStringExtra(AddTodoActivity.TODO)
             )
             todoViewModel.insert(newTodo)
 
