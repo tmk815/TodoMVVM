@@ -8,11 +8,14 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createTodo(todo: Todo)
 
+    @Insert
+    fun insert(todo: Todo)
+
     @Query("SELECT * FROM Todo")
     fun findAll(): LiveData<List<Todo>>
 
     @Query("SELECT * FROM todo WHERE completed = :type")
-    fun findSelect(type: Int):LiveData<List<Todo>>
+    fun findSelect(type: Int): LiveData<List<Todo>>
 
     @Update
     fun updateTodo(todo: Todo)
