@@ -11,7 +11,7 @@ import com.example.tmk815.todomvvm.R
 import com.example.tmk815.todomvvm.db.entity.Todo
 
 class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
-    private var todos: List<Todo> = ArrayList()
+    private var todos: List<Todo> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoHolder {
         val itemView = LayoutInflater.from(parent.context)
