@@ -44,12 +44,12 @@ abstract class TodoDatabase : RoomDatabase() {
 }
 
 class PopulateDbAsyncTask(db: TodoDatabase?) : AsyncTask<Unit, Unit, Unit>() {
-    private val noteDao = db?.todoDao()
+    private val todoDao = db?.todoDao()
 
     override fun doInBackground(vararg p0: Unit?) {
-        noteDao?.insert(Todo( 0, "DBのアクセスは Room を使う"))
-        noteDao?.insert(Todo( 0, "リストはRecyclerViewを使う"))
-        noteDao?.insert(Todo( 0, "ViewModelとLiveDataを使う"))
+        todoDao?.insert(Todo( 0, "DBのアクセスは Room を使う"))
+        todoDao?.insert(Todo( 0, "リストはRecyclerViewを使う"))
+        todoDao?.insert(Todo( 0, "ViewModelとLiveDataを使う"))
     }
 
 }

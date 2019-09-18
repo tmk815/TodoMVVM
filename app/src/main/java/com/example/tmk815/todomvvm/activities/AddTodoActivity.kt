@@ -28,15 +28,15 @@ class AddTodoActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.save_note -> {
-                saveNote()
+            R.id.save_todo -> {
+                saveTodo()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun saveNote() {
+    private fun saveTodo() {
         if (edit_text_todo.text.toString().trim().isBlank()) {
             Toast.makeText(this, "Can not insert empty note!", Toast.LENGTH_SHORT).show()
             return
