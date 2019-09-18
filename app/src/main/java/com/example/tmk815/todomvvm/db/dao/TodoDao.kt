@@ -1,7 +1,8 @@
-package com.example.tmk815.todomvvm
+package com.example.tmk815.todomvvm.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.tmk815.todomvvm.db.entity.Todo
 
 @Dao
 interface TodoDao {
@@ -11,15 +12,18 @@ interface TodoDao {
     @Insert
     fun insert(todo: Todo)
 
-    @Query("SELECT * FROM Todo")
+    @Query("SELECT * FROM todo_table")
     fun findAll(): LiveData<List<Todo>>
 
-    @Query("SELECT * FROM todo WHERE completed = :type")
+    @Query("SELECT * FROM todo_table WHERE completed = :type")
     fun findSelect(type: Int): LiveData<List<Todo>>
 
     @Update
-    fun updateTodo(todo: Todo)
+    fun update(todo: Todo)
 
     @Delete
     fun delete(todo: Todo)
+
+    @Query("DELETE FROM todo_table WHERE completed = 1")
+    fun deleteCompleted()
 }
