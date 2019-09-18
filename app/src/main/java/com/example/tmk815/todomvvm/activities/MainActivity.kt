@@ -33,9 +33,11 @@ class MainActivity : AppCompatActivity() {
                 ADD_TODO_REQUEST
             )
         }
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
+
         todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
         todoViewModel.findAll().observe(this,
             Observer<List<Todo>> {
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
@@ -76,7 +79,5 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Todo not saved!", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 }
