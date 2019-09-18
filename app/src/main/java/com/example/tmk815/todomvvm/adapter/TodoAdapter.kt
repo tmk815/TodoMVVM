@@ -34,7 +34,7 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class TodoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class TodoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var checkBox: CheckBox = itemView.findViewById(R.id.checkbox)
         var todoText: EditText = itemView.findViewById(R.id.todoText)
     }
