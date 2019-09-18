@@ -7,9 +7,8 @@ import com.example.tmk815.todomvvm.TodoRepository
 import com.example.tmk815.todomvvm.db.entity.Todo
 
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
-    private var repository: TodoRepository =
-        TodoRepository(application)
-    private var allTodos: LiveData<List<Todo>> = repository.findAll()
+    private val repository: TodoRepository = TodoRepository(application)
+    private val allTodos: LiveData<List<Todo>> = repository.findAll()
 
     fun insert(Todo: Todo) {
         repository.insert(Todo)
