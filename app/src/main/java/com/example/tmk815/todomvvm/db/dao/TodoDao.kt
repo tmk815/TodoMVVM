@@ -18,6 +18,9 @@ interface TodoDao {
     @Query("SELECT * FROM todo_table WHERE completed = :type")
     fun findSelect(type: Int): LiveData<List<Todo>>
 
+    @Query("DELETE FROM todo_table")
+    fun deleteAll()
+
     @Update
     fun update(todo: Todo)
 
