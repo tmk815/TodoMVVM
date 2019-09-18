@@ -36,6 +36,6 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
 
     class TodoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var checkBox: CheckBox = itemView.findViewById(R.id.checkbox)
-        var todoText: EditText = itemView.findViewById(R.id.todoText)
+        var todoText: EditText = itemView.findViewById(R.id.todo_text)
     }
 }
