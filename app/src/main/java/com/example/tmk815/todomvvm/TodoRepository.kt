@@ -34,6 +34,10 @@ class TodoRepository(application: Application) {
         return allTodos
     }
 
+    fun findSelect(type: Int) : LiveData<List<Todo>> {
+        return todoDao.findSelect(type)
+    }
+
     fun update(todo: Todo) {
         val updateTodoAsyncTask = UpdateTodoAsyncTask(todoDao).execute(todo)
     }
@@ -55,7 +59,6 @@ class TodoRepository(application: Application) {
             todoDao.update(p0[0]!!)
         }
     }
-
 
     private class DeleteCompletedTodosAsyncTask(val todoDao: TodoDao) :
         AsyncTask<Unit, Unit, Unit>() {
