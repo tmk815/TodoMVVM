@@ -10,8 +10,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TodoRepository = TodoRepository(application)
     private val allTodos: LiveData<List<Todo>> = repository.findAll()
 
-    fun insert(Todo: Todo) {
-        repository.insert(Todo)
+    fun insert(todo: Todo) {
+        repository.insert(todo)
     }
 
     fun deleteAll() {
@@ -20,5 +20,9 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun findAll(): LiveData<List<Todo>> {
         return allTodos
+    }
+
+    fun update(todo:Todo){
+        repository.update(todo)
     }
 }
