@@ -10,4 +10,9 @@
         android:id="@+id/delete_completed_todos"
         android:title="Delete Completed Todos"
         app:showAsAction="never" />
+
+    <item android:id="@+id/filter_todo"
+        android:icon="@mipmap/filter_list_white_18dp"
+        android:title="Filter"
+        app:showAsAction="ifRoom"/>
 </menu>
