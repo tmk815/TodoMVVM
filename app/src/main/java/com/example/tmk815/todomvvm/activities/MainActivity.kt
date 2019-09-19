@@ -61,6 +61,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "All todos deleted!", Toast.LENGTH_SHORT).show()
                 true
             }
+            R.id.delete_completed_todos -> {
+                todoViewModel.deleteCompleted()
+                Toast.makeText(this, "Completed todos deleted!", Toast.LENGTH_SHORT).show()
+                true
+            }
             else -> {
                 super.onOptionsItemSelected(item)
             }
