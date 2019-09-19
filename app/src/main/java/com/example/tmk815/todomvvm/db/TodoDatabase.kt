@@ -51,5 +51,4 @@ class PopulateDbAsyncTask(db: TodoDatabase?) : AsyncTask<Unit, Unit, Unit>() {
         todoDao?.insert(Todo( 0, "リストはRecyclerViewを使う"))
         todoDao?.insert(Todo( 0, "ViewModelとLiveDataを使う"))
     }
-
 }
