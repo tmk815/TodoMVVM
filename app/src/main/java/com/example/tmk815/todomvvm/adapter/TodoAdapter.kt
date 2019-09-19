@@ -8,14 +8,19 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tmk815.todomvvm.R
+import com.example.tmk815.todomvvm.R.layout
 import com.example.tmk815.todomvvm.db.entity.Todo
+import com.example.tmk815.todomvvm.viewmodel.TodoViewModel
 
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
+
+class TodoAdapter(private val viewModel: TodoViewModel) :
+    RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
     private var todos: List<Todo> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.todo_item, parent, false)
+            .inflate(layout.todo_item, parent, false)
+
         return TodoHolder(itemView)
     }
 
@@ -23,6 +28,11 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoHolder>() {
         val currentTodo = todos[position]
         holder.checkBox.isChecked = currentTodo.completed != 0
         holder.todoText.setText(currentTodo.todoText, TextView.BufferType.NORMAL)
+
+        holder.checkBox.setOnClickListener {
+            currentTodo.completed = if (holder.checkBox.isChecked) 1 else 0
+            viewModel.update(currentTodo)
+        }
     }
 
     override fun getItemCount(): Int {
