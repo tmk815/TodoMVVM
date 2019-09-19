@@ -29,4 +29,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteCompleted() {
         repository.deleteCompleted()
     }
+
+    fun delete(todo: Todo) {
+        repository.delete(todo)
+    }
 }
