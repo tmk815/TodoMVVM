@@ -23,26 +23,32 @@ class TodoRepository(application: Application) {
     }
 
     fun deleteCompleted() {
-        val DeleteCompletedTodosAsyncTask = DeleteCompletedTodosAsyncTask(
-            todoDao
-        ).execute()
+        val DeleteCompletedTodosAsyncTask = DeleteCompletedTodosAsyncTask(todoDao).execute()
     }
 
     fun deleteAll() {
-        val DeleteAllAsyncTask = DeleteAllAsyncTask(
-            todoDao
-        ).execute()
+        val DeleteAllAsyncTask = DeleteAllAsyncTask(todoDao).execute()
     }
 
     fun findAll(): LiveData<List<Todo>> {
         return allTodos
     }
 
-    private class InsertTodoAsyncTask(todoDao: TodoDao) : AsyncTask<Todo, Unit, Unit>() {
-        val todoDao = todoDao
+    fun update(todo: Todo) {
+        val updateTodoAsyncTask = UpdateTodoAsyncTask(todoDao).execute(todo)
+    }
+
+    private class InsertTodoAsyncTask(val todoDao: TodoDao) : AsyncTask<Todo, Unit, Unit>() {
 
         override fun doInBackground(vararg p0: Todo?) {
             todoDao.insert(p0[0]!!)
+        }
+    }
+
+    private class UpdateTodoAsyncTask(val todoDao: TodoDao) : AsyncTask<Todo, Unit, Unit>() {
+
+        override fun doInBackground(vararg p0: Todo?) {
+            todoDao.update(p0[0]!!)
         }
     }
 

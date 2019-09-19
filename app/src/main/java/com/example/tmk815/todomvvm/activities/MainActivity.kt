@@ -33,11 +33,14 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
+
+        val adapter = TodoAdapter(todoViewModel)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
-        todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
         todoViewModel.findAll().observe(this,
             Observer<List<Todo>> {
                 if (it != null) {
@@ -56,6 +59,11 @@ class MainActivity : AppCompatActivity() {
             R.id.delete_all_todos -> {
                 todoViewModel.deleteAll()
                 Toast.makeText(this, "All todos deleted!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.delete_completed_todos -> {
+                todoViewModel.deleteCompleted()
+                Toast.makeText(this, "Completed todos deleted!", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> {
