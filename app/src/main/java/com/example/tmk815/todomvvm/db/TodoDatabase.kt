@@ -21,7 +21,7 @@ abstract class TodoDatabase : RoomDatabase() {
                 synchronized(TodoDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        TodoDatabase::class.java, "notes_database"
+                        TodoDatabase::class.java, "todos_database"
                     )
                         .fallbackToDestructiveMigration()
                         .addCallback(roomCallback)
