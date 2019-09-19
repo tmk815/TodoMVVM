@@ -38,6 +38,10 @@ class TodoRepository(application: Application) {
         val updateTodoAsyncTask = UpdateTodoAsyncTask(todoDao).execute(todo)
     }
 
+    fun delete(todo: Todo) {
+        val DeleteTodoAsyncTask = DeleteTodoAsyncTask(todoDao).execute(todo)
+    }
+
     private class InsertTodoAsyncTask(val todoDao: TodoDao) : AsyncTask<Todo, Unit, Unit>() {
 
         override fun doInBackground(vararg p0: Todo?) {
@@ -53,7 +57,8 @@ class TodoRepository(application: Application) {
     }
 
 
-    private class DeleteCompletedTodosAsyncTask(val todoDao: TodoDao) : AsyncTask<Unit, Unit, Unit>() {
+    private class DeleteCompletedTodosAsyncTask(val todoDao: TodoDao) :
+        AsyncTask<Unit, Unit, Unit>() {
 
         override fun doInBackground(vararg p0: Unit?) {
             todoDao.deleteCompleted()
@@ -64,6 +69,13 @@ class TodoRepository(application: Application) {
 
         override fun doInBackground(vararg p0: Unit?) {
             todoDao.deleteAll()
+        }
+    }
+
+    private class DeleteTodoAsyncTask(val todoDao: TodoDao) : AsyncTask<Todo, Unit, Unit>() {
+
+        override fun doInBackground(vararg p0: Todo?) {
+            todoDao.delete(p0[0]!!)
         }
     }
 }
