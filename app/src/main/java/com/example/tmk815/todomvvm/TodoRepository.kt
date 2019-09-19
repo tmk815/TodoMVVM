@@ -7,10 +7,10 @@ import com.example.tmk815.todomvvm.db.TodoDatabase
 import com.example.tmk815.todomvvm.db.dao.TodoDao
 import com.example.tmk815.todomvvm.db.entity.Todo
 
-class TodoRepository(application: Application){
-    private var todoDao: TodoDao
+class TodoRepository(application: Application) {
+    private val todoDao: TodoDao
 
-    private var allTodos: LiveData<List<Todo>>
+    private val allTodos: LiveData<List<Todo>>
 
     init {
         val database: TodoDatabase = TodoDatabase.getInstance(application.applicationContext)!!
