@@ -33,11 +33,14 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
+
+        val adapter = TodoAdapter(todoViewModel)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
-        todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
         todoViewModel.findAll().observe(this,
             Observer<List<Todo>> {
                 if (it != null) {
