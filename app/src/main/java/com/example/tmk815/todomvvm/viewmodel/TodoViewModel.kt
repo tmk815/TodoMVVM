@@ -22,7 +22,11 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         return allTodos
     }
 
-    fun update(todo:Todo){
+    fun update(todo: Todo) {
         repository.update(todo)
+    }
+
+    fun deleteCompleted() {
+        repository.deleteCompleted()
     }
 }
