@@ -39,8 +39,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-
-
         todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
 
         adapter = TodoAdapter(todoViewModel)
