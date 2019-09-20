@@ -85,26 +85,17 @@ class MainActivity : AppCompatActivity() {
         PopupMenu(this, view).run {
             menuInflater.inflate(R.menu.filter_tasks, menu)
 
+            val observer = Observer<List<Todo>> {
+                if (it != null) {
+                    adapter.setTodos(it)
+                }
+            }
+
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.active -> todoViewModel.findSelect(0).observe(this@MainActivity,
-                        Observer<List<Todo>> {
-                            if (it != null) {
-                                adapter.setTodos(it)
-                            }
-                        })
-                    R.id.completed -> todoViewModel.findSelect(1).observe(this@MainActivity,
-                        Observer<List<Todo>> {
-                            if (it != null) {
-                                adapter.setTodos(it)
-                            }
-                        })
-                    else -> todoViewModel.findAll().observe(this@MainActivity,
-                        Observer<List<Todo>> {
-                            if (it != null) {
-                                adapter.setTodos(it)
-                            }
-                        })
+                    R.id.active -> todoViewModel.findSelect(0).observe(this@MainActivity, observer)
+                    R.id.completed -> todoViewModel.findSelect(1).observe(this@MainActivity, observer)
+                    else -> todoViewModel.findAll().observe(this@MainActivity, observer)
                 }
                 true
             }
