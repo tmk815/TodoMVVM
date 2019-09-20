@@ -3,6 +3,7 @@ package com.example.tmk815.todomvvm.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
@@ -31,6 +32,14 @@ class TodoAdapter(private val viewModel: TodoViewModel) :
         holder.checkBox.setOnClickListener {
             currentTodo.completed = if (holder.checkBox.isChecked) 1 else 0
             viewModel.update(currentTodo)
+        }
+
+        holder.todoText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
+                currentTodo.todoText = holder.todoText.text.toString()
+                viewModel.update(currentTodo)
+            }
+            false
         }
     }
 
