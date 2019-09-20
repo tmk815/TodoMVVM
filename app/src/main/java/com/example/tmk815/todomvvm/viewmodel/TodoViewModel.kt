@@ -22,6 +22,10 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         return allTodos
     }
 
+    fun findSelect(type: Int): LiveData<List<Todo>> {
+        return repository.findSelect(type)
+    }
+
     fun update(todo: Todo) {
         repository.update(todo)
     }
